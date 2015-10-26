@@ -19,6 +19,7 @@ public class Server {
 			serverSocket = new ServerSocket(port,0, InetAddress.getByName("0.0.0.0"));
 			while (keepGoing) {
 				Socket socket = serverSocket.accept(); 
+				System.out.println("ITS RUNNING");
 				try {
 					ThreadPool.executor.execute(new Worker(socket));
 					if(ThreadPool.executor.isShutdown())	// if its shut down, end the program
