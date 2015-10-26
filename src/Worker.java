@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 
 public class Worker implements Runnable {
 
-	public Worker(Socket socket) throws IOException, InterruptedException,Exception {
+	public Worker(Socket socket) throws IOException, InterruptedException {
 		BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		String message = inFromClient.readLine();	// read message from client
 		//call the function to process difference types of messages
@@ -34,11 +34,15 @@ public class Worker implements Runnable {
 		}
 	}
 	// print out the ip, port number and the student id
-	private void dealWithHELO(Socket socket,String message) throws Exception {
+	private void dealWithHELO(Socket socket,String message) {
 		String s = message + "IP:" + Inet4Address.getLocalHost()+"\nPort:"
 			+socket.getLocalPort()+"\nStudentID:1ee9647a04c08c2a6d5896be1df1d272d50e01606f56790c53f1d406336b1609\n";
 		DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
+		try {
 		outToClient.writeBytes(s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// close the socket and kill the executor, ending all threads instantly
