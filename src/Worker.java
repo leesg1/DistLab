@@ -12,6 +12,7 @@ public class Worker implements Runnable {
 		String message = inFromClient.readLine();	// read message from client
 		//call the function to process difference types of messages
 		message = message.trim();
+		System.out.println("Got Here");
 		if(message.contains("HELO ") && message.contains("\n")){
 			dealWithHELO(socket);
 		}  
