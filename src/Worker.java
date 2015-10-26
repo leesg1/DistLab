@@ -15,7 +15,7 @@ public class Worker implements Runnable {
 		System.out.println("Got Here");
 		if(message.contains("HELO ")){
 			System.out.println("Got to deal with helo message");
-			dealWithHELO(socket);
+			dealWithHELO(socket,message);
 		}  
 		else if(message.equals("KILL_SERVICE\n".trim())){
 			dealWithKill(socket);
