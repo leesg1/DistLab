@@ -15,7 +15,7 @@ public class Server {
 
 	public void start() throws UnknownHostException, IOException {
 		keepGoing = true;
-			serverSocket = new ServerSocket(port);
+			serverSocket = new ServerSocket(port,0, InetAddress.getByName("0.0.0.0"));
 			while (keepGoing) {
 				Socket socket = serverSocket.accept(); 
 				try {
