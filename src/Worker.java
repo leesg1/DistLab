@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 
 public class Worker implements Runnable {
 
-	public Worker(Socket socket) throws IOException, InterruptedException {
+	public Worker(Socket socket) throws IOException, InterruptedException,Exception {
 		BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		String message = inFromClient.readLine();	// read message from client
 		//call the function to process difference types of messages
