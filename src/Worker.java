@@ -11,8 +11,12 @@ public class Worker implements Runnable {
 		BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		String message = inFromClient.readLine();	// read message from client
 		//call the function to process difference types of messages
-		if(message.equals("HELO text\n".trim())){
+		message = message.trim();
+		if(message.contains("HELO ") && message.contains("\n")){
 			dealWithHELO(socket);
+		}  
+		else{
+			throw new IllegalArgumentException("String is not HELO something \n");
 		}
 		else if(message.equals("KILL_SERVICE\n".trim())){
 			dealWithKill(socket);
