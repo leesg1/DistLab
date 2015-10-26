@@ -20,7 +20,6 @@ public class Worker implements Runnable {
 		}
 		else{
 			dealWithOtherMessages();
-			throw new IllegalArgumentException("String is not HELO something \n");
 		}
 	}
 
