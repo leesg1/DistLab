@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.DataOutputStream;
+import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -34,16 +35,11 @@ public class Worker implements Runnable {
 		}
 	}
 	// print out the ip, port number and the student id
-	private void dealWithHELO(Socket socket,String message) throws UnknownHostException, IOException{
-		String s = "IP:" + Inet4Address.getLocalHost()+"\nPort:"
+	private void dealWithHELO(Socket socket,String message) throws Exception{
+		String s = message.trim() + "IP:" + Inet4Address.getLocalHost()+"\nPort:"
 			+socket.getLocalPort()+"\nStudentID:1ee9647a04c08c2a6d5896be1df1d272d50e01606f56790c53f1d406336b1609\n";
-		DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
-		try {
-		outToClient.writeBytes(s);
-		outToClient.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		 PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+		 pw.println(s);
 	}
 	
 	// close the socket and kill the executor, ending all threads instantly
