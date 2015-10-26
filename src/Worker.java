@@ -15,14 +15,12 @@ public class Worker implements Runnable {
 		if(message.contains("HELO ") && message.contains("\n")){
 			dealWithHELO(socket);
 		}  
-		else{
-			throw new IllegalArgumentException("String is not HELO something \n");
-		}
 		else if(message.equals("KILL_SERVICE\n".trim())){
 			dealWithKill(socket);
 		}
 		else{
 			dealWithOtherMessages();
+			throw new IllegalArgumentException("String is not HELO something \n");
 		}
 	}
 
