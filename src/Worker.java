@@ -40,6 +40,7 @@ public class Worker implements Runnable {
 		DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
 		try {
 		outToClient.writeBytes(s);
+		outToClient.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
