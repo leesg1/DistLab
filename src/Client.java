@@ -6,7 +6,7 @@ class Client {
 	public static int port;
 	Client() {
 		// which calls the common constructor with the GUI set to null
-		this("localhost", port);
+		this("0.0.0.0", port);
 	}
 	
 	public Client(String string, int i) {
