@@ -13,7 +13,8 @@ public class Worker implements Runnable {
 		//call the function to process difference types of messages
 		message = message.trim();
 		System.out.println("Got Here");
-		if(message.contains("HELO ") && message.contains("\n")){
+		if(message.contains("HELO ")){
+			System.out.println("Got to deal with helo message");
 			dealWithHELO(socket);
 		}  
 		else if(message.equals("KILL_SERVICE\n".trim())){
@@ -34,8 +35,8 @@ public class Worker implements Runnable {
 		}
 	}
 	// print out the ip, port number and the student id
-	private void dealWithHELO(Socket socket) throws UnknownHostException {
-		System.out.println("HELO text\nIP:" + Inet4Address.getLocalHost()+"\nPort:"
+	private void dealWithHELO(Socket socket,String message) throws UnknownHostException {
+		System.out.println(message + "IP:" + Inet4Address.getLocalHost()+"\nPort:"
 			+socket.getLocalPort()+"\nStudentID:1ee9647a04c08c2a6d5896be1df1d272d50e01606f56790c53f1d406336b1609\n");
 	}
 	
